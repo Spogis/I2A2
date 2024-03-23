@@ -12,8 +12,8 @@ train_data = pd.read_csv('../02 - Data Preparation/new_titanic_datasets/Newtrain
 validation_data = pd.read_csv('../02 - Data Preparation/new_titanic_datasets/NewtestData.csv')
 
 # Especificando as colunas categóricas e numéricas
-categorical_features = ['Sex', 'Embarked', 'Title', 'AgeGroup', 'CabinPrefix', 'IsAlone']
-numerical_features = ['Pclass', 'Age', 'SibSp', 'Parch', 'Fare', 'FamilySize', 'FarePerPerson']
+categorical_features = ['Title', 'Sex', 'TicketAppearances', 'CabinPrefix', 'IsAlone', 'Embarked']
+numerical_features = ['Pclass', 'Fare', 'FamilySize', 'SibSp', 'Parch']
 
 # Codificação das variáveis categóricas
 label_encoder = LabelEncoder()
@@ -35,6 +35,7 @@ X = train_data[categorical_features + numerical_features]
 
 # Dividindo os dados em conjuntos de treinamento e teste
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
 
 # Criando e treinando o modelo
 model = RandomForestClassifier(random_state=42)

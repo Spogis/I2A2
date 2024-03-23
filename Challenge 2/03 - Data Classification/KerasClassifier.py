@@ -16,8 +16,11 @@ train_data = pd.read_csv('../02 - Data Preparation/new_titanic_datasets/Newtrain
 validation_data = pd.read_csv('../02 - Data Preparation/new_titanic_datasets/NewtestData.csv')
 
 # Especificando as colunas categóricas e numéricas
-categorical_features = ['Sex', 'Embarked', 'Title', 'AgeGroup', 'CabinPrefix', 'IsAlone']
-numerical_features = ['Pclass', 'Age', 'SibSp', 'Parch', 'Fare', 'FamilySize', 'FarePerPerson']
+# categorical_features = ['Sex', 'Embarked', 'Title', 'AgeGroup', 'CabinPrefix', 'IsAlone']
+# numerical_features = ['Pclass', 'Age', 'SibSp', 'Parch', 'Fare', 'FamilySize', 'FarePerPerson']
+
+categorical_features = ['Title', 'Sex', 'TicketAppearances', 'CabinPrefix', 'IsAlone', 'Embarked']
+numerical_features = ['Pclass', 'Fare', 'FamilySize', 'SibSp', 'Parch']
 
 label_encoder = LabelEncoder()
 for feature in categorical_features:
@@ -48,18 +51,16 @@ def Create_Keras_Model(in_features, n_camadas_ocultas):
     initializer = initializers.GlorotNormal(seed=42)
 
     # Adicionando a camada de entrada
-    model.add(Dense(128, input_dim=in_features, activation="relu", kernel_initializer=initializer))
+    model.add(Dense(64, input_dim=in_features, activation="relu", kernel_initializer=initializer))
 
     # Adicionando camadas ocultas
-    for i in range(n_camadas_ocultas-1):
-        model.add(Dense(64, activation="relu", kernel_initializer=initializer, kernel_regularizer=l2(0.001)))
-
-    model.add(Dense(32, activation="relu", kernel_initializer=initializer, kernel_regularizer=l2(0.001)))
+    for i in range(n_camadas_ocultas):
+        model.add(Dense(64, activation="relu", kernel_initializer=initializer))
 
     # Adicionando a camada de saída
     model.add(Dense(1, activation='sigmoid', kernel_initializer=initializer))
 
-    opt = keras.optimizers.Adam(learning_rate=0.0005)
+    opt = keras.optimizers.Adam(learning_rate=0.0004)
 
     model.compile(optimizer=opt, loss='binary_crossentropy',
                   metrics=['accuracy'])
@@ -76,8 +77,8 @@ model = Create_Keras_Model(in_features, n_camadas_ocultas)
 # Treinamento do modelo
 early_stopping = keras.callbacks.EarlyStopping(
         monitor='loss',
-        patience=20,
-        min_delta=0.0001,
+        patience=10,
+        min_delta=0.001,
         restore_best_weights=True,
     )
 
@@ -145,3 +146,14 @@ plt.ylabel('Perda')
 plt.xlabel('Época')
 plt.legend(loc='upper right')
 plt.show()
+
+
+X_Validation = validation_data[categorical_features + numerical_features]
+# Previsões (probabilidades) do modelo
+predictions = model.predict(X_Validation)
+# Convertendo probabilidades em classificações binárias (0 ou 1)
+predictions = (predictions > 0.5).astype(int).flatten()
+
+output = pd.DataFrame({'PassengerId': validation_data.PassengerId, 'Survived': predictions})
+output.to_csv('submission.csv', index=False)
+print("Your submission was successfully saved!")

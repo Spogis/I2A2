@@ -12,8 +12,8 @@ train_data = pd.read_csv('../02 - Data Preparation/new_titanic_datasets/Newtrain
 validation_data = pd.read_csv('../02 - Data Preparation/new_titanic_datasets/NewtestData.csv')
 
 # Especificando as colunas categóricas e numéricas
-categorical_features = ['Sex', 'Embarked', 'Title', 'AgeGroup', 'CabinPrefix', 'IsAlone']
-numerical_features = ['Pclass', 'Age', 'SibSp', 'Parch', 'Fare', 'FamilySize', 'FarePerPerson']
+categorical_features = ['Title', 'Sex', 'TicketAppearances', 'CabinPrefix', 'IsAlone', 'Embarked']
+numerical_features = ['Pclass', 'Fare', 'FamilySize', 'SibSp', 'Parch']
 
 # Codificação das variáveis categóricas
 label_encoder = LabelEncoder()

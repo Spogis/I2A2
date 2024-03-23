@@ -12,8 +12,8 @@ train_data = pd.read_csv('../02 - Data Preparation/new_titanic_datasets/Newtrain
 validation_data = pd.read_csv('../02 - Data Preparation/new_titanic_datasets/NewtestData.csv')
 
 # Especificando as colunas categóricas e numéricas
-categorical_features = ['Sex', 'Embarked', 'Title', 'AgeGroup', 'CabinPrefix', 'IsAlone']
-numerical_features = ['Pclass', 'Age', 'SibSp', 'Parch', 'Fare', 'FamilySize', 'FarePerPerson']
+categorical_features = ['Title', 'Sex', 'TicketAppearances', 'CabinPrefix', 'IsAlone', 'Embarked']
+numerical_features = ['Pclass', 'Fare', 'FamilySize', 'SibSp', 'Parch']
 
 # Codificação das variáveis categóricas
 label_encoder = LabelEncoder()
@@ -37,18 +37,20 @@ X = train_data[categorical_features + numerical_features]
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 # Definindo o espaço de hiperparâmetros para o Grid Search
+# Definindo o espaço de hiperparâmetros expandido para o Grid Search
 param_grid = {
-    'n_estimators': [100, 200, 300],
-    'max_depth': [None, 10, 20, 30],
-    'min_samples_split': [2, 5, 10],
-    'min_samples_leaf': [1, 2, 4]
+    'n_estimators': [100, 200, 300, 400, 700, 1000],  # Número de árvores no bosque
+    'max_depth': [None, 10, 20, 30, 40],  # Máxima profundidade da árvore
+    'min_samples_split': [2, 5, 10, 15, 20],  # Número mínimo de amostras necessárias para dividir um nó interno
+    'min_samples_leaf': [1, 2, 4, 6],  # Número mínimo de amostras necessárias para estar em um nó folha
+    'criterion': ['gini', 'entropy']  # Medida da qualidade de uma divisão
 }
 
 # Criando o modelo de Random Forest para o Grid Search
 rf = RandomForestClassifier(random_state=42)
 
 # Criando o objeto GridSearchCV
-grid_search = GridSearchCV(estimator=rf, param_grid=param_grid, cv=3, n_jobs=-1, verbose=2, scoring='accuracy')
+grid_search = GridSearchCV(estimator=rf, param_grid=param_grid, cv=5, n_jobs=-1, verbose=0, scoring='accuracy')
 
 # Realizando o Grid Search com os dados de treinamento
 grid_search.fit(X_train, y_train)
@@ -102,3 +104,10 @@ plt.title('Feature Importance')
 plt.xlabel('Importance')
 plt.ylabel('Features')
 plt.show()
+
+
+X_Validation = validation_data[categorical_features + numerical_features]
+predictions = best_model.predict(X_Validation)
+output = pd.DataFrame({'PassengerId': validation_data.PassengerId, 'Survived': predictions})
+output.to_csv('submission.csv', index=False)
+print("Your submission was successfully saved!")
