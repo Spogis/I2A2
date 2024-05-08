@@ -27,6 +27,15 @@
 - [Extra Trees](https://github.com/Spogis/I2A2/blob/master/Challenge%203/Jupyter%20Notebooks/01%20-%20Extremely%20Randomized%20Trees%20Regression.ipynb)
 - [Dataset](https://github.com/Spogis/I2A2/blob/master/Challenge%203/Jupyter%20Notebooks/TabelaTACO.xlsx)
 
+
+### Aulas Canal Yotube (Nicolas Spogis)
+#### Aula Random Forest
+[![Aula Random Forest](https://img.youtube.com/vi/v236RYHjt08/0.jpg)](https://youtu.be/v236RYHjt08)
+#### Aula Extra Trees
+[![Aula Extra Trees](https://img.youtube.com/vi/0pYxoQAdFe4/0.jpg)](https://youtu.be/0pYxoQAdFe4)
+
+
+
 ### Objetivo
 
 A apresentação visa esclarecer o funcionamento e a importância dessas técnicas, demonstrando sua aplicação prática e os ganhos obtidos em diferentes contextos de aprendizado de máquina.
