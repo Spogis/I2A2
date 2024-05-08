@@ -3,9 +3,9 @@
 ### Integrantes:
 - Ana Oliveira 
 - André Souza 
-- Bruno de Sousa Donato 
+- Bruno de Sousa Donato | <https://www.linkedin.com/in/bruno-de-sousa-donato/>
 - Lucas dos Santos Garcia 
-- Nicolas Spogis 
+- Nicolas Spogis | <https://www.linkedin.com/in/spogis/> | <https://linktr.ee/CascaGrossaSuprema>
 - Roger Trezza 
 - Thiago Martins 
 - Thomaz Barros 
