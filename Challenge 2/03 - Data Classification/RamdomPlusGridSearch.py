@@ -109,5 +109,5 @@ plt.show()
 X_Validation = validation_data[categorical_features + numerical_features]
 predictions = best_model.predict(X_Validation)
 output = pd.DataFrame({'PassengerId': validation_data.PassengerId, 'Survived': predictions})
-output.to_csv('submission.csv', index=False)
+output.to_csv('submission_temp.csv', index=False)
 print("Your submission was successfully saved!")

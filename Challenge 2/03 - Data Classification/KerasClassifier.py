@@ -155,5 +155,5 @@ predictions = model.predict(X_Validation)
 predictions = (predictions > 0.5).astype(int).flatten()
 
 output = pd.DataFrame({'PassengerId': validation_data.PassengerId, 'Survived': predictions})
-output.to_csv('submission.csv', index=False)
+output.to_csv('submission_temp.csv', index=False)
 print("Your submission was successfully saved!")
