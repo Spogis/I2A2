@@ -19,13 +19,13 @@
 - Extra Trees
 
 ### Links
-- [Relatório Completo](https://github.com/Spogis/I2A2/blob/master/Challenge%203/Relat%C3%B3rio%20Grupo%203.pdf)
-- [PPT](https://github.com/Spogis/I2A2/blob/master/Challenge%203/PPT%20-%20Grupo%203.pptx)
-- [PPT em formato PDF](https://github.com/Spogis/I2A2/blob/master/Challenge%203/PPT%20-%20Grupo%203.pdf)
+- [Relatório Completo](https://github.com/Spogis/I2A2/blob/master/Projeto%20Grupo%203/Relat%C3%B3rio%20Grupo%203.pdf)
+- [PPT](https://github.com/Spogis/I2A2/blob/master/Projeto%20Grupo%203/PPT%20-%20Grupo%203.pptx)
+- [PPT em formato PDF](https://github.com/Spogis/I2A2/blob/master/Projeto%20Grupo%203/PPT%20-%20Grupo%203.pdf)
 #### Exemplos de casos
-- [Exemplos Random Forest](https://github.com/Spogis/I2A2/blob/master/Challenge%203/Jupyter%20Notebooks/00%20-%20Random%20Forest%20Regression.ipynb)
-- [Extra Trees](https://github.com/Spogis/I2A2/blob/master/Challenge%203/Jupyter%20Notebooks/01%20-%20Extremely%20Randomized%20Trees%20Regression.ipynb)
-- [Dataset](https://github.com/Spogis/I2A2/blob/master/Challenge%203/Jupyter%20Notebooks/TabelaTACO.xlsx)
+- [Exemplos Random Forest](https://github.com/Spogis/I2A2/blob/master/Projeto%20Grupo%203/Jupyter%20Notebooks/00%20-%20Random%20Forest%20Regression.ipynb)
+- [Extra Trees](https://github.com/Spogis/I2A2/blob/master/Projeto%20Grupo%203/Jupyter%20Notebooks/01%20-%20Extremely%20Randomized%20Trees%20Regression.ipynb)
+- [Dataset](https://github.com/Spogis/I2A2/blob/master/Projeto%20Grupo%203/Jupyter%20Notebooks/TabelaTACO.xlsx)
 
 
 ### Aulas Canal Yotube (Nicolas Spogis)
