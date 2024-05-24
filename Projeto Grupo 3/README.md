@@ -1,6 +1,5 @@
 # Apresentação Grupo 3 - I2A2
 
-Teste 
 ### Integrantes:
 - Ana Oliveira 
 - André Souza 
