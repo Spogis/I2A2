@@ -1,6 +1,7 @@
 import pandas as pd
 from prophet import Prophet
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+from sklearn.preprocessing import MinMaxScaler
 import numpy as np
 import matplotlib.pyplot as plt
 import holidays
@@ -46,6 +47,10 @@ validation_actuals = []
 
 # Treinar e prever para cada combinação de loja e item no conjunto de validação
 for (store, item), group in prophet_train_data.groupby(['store', 'item']):
+    # Escalonar os dados
+    scaler = MinMaxScaler()
+    group['y'] = scaler.fit_transform(group[['y']])
+
     model = Prophet(
         yearly_seasonality=True,
         weekly_seasonality=True,
@@ -55,7 +60,7 @@ for (store, item), group in prophet_train_data.groupby(['store', 'item']):
         holidays_prior_scale=10,
         changepoint_prior_scale=0.05,
         n_changepoints=25,
-        holidays=holiday_data
+        holidays=holiday_data,
     )
     model.fit(group[['ds', 'y']])
 
@@ -65,6 +70,10 @@ for (store, item), group in prophet_train_data.groupby(['store', 'item']):
     future = pd.DataFrame(future_dates, columns=['ds'])
 
     forecast = model.predict(future)
+
+    # Desescalar as previsões
+    forecast['yhat'] = scaler.inverse_transform(forecast[['yhat']].values.reshape(-1, 1))
+
     forecast['store'] = store
     forecast['item'] = item
 
@@ -103,7 +112,7 @@ plt.legend()
 plt.savefig('forecast_vs_actuals.png')
 
 # Mostrar a figura
-# plt.show()
+plt.show()
 
 # Preparar o DataFrame completo para o Prophet
 prophet_data = daily_sales.rename(columns={'date': 'ds', 'sales': 'y'})
@@ -113,6 +122,10 @@ all_forecasts = []
 
 # Treinar e prever para cada combinação de loja e item no conjunto de teste
 for (store, item), group in prophet_data.groupby(['store', 'item']):
+    # Escalonar os dados
+    scaler = MinMaxScaler()
+    group['y'] = scaler.fit_transform(group[['y']])
+
     model = Prophet(
         yearly_seasonality=True,
         weekly_seasonality=True,
@@ -122,7 +135,7 @@ for (store, item), group in prophet_data.groupby(['store', 'item']):
         holidays_prior_scale=10,
         changepoint_prior_scale=0.05,
         n_changepoints=25,
-        holidays=holiday_data
+        holidays=holiday_data,
     )
     model.fit(group[['ds', 'y']])
 
@@ -131,6 +144,9 @@ for (store, item), group in prophet_data.groupby(['store', 'item']):
     future = pd.DataFrame(future_dates, columns=['ds'])
 
     forecast = model.predict(future)
+    # Desescalar as previsões
+    forecast['yhat'] = scaler.inverse_transform(forecast[['yhat']].values.reshape(-1, 1))
+
     forecast['store'] = store
     forecast['item'] = item
 
