@@ -1,3 +1,17 @@
 /Challenge 2/Relatório Challenge 2.docx
 /temp/
-/temp/
+/Challenge 4/cat_dog_classifier_vgg16_tuned.h5
+/Challenge 4/Challenge4.zip
+/Challenge 4/dataset.zip.zip
+/Challenge 4/classification_report_tuned.txt
+/Challenge 4/confusion_matrix_tuned_percent.png
+/Challenge 4/distribuicao_tamanhos_treinamento.png
+/Challenge 4/model_accuracy_tuned.png
+/Challenge 4/model_loss_tuned.png
+/Challenge 4/relatorio_crisp_dm.pdf
+/Challenge 4/testeGPU.py
+/Challenge 4/test_images_predictions.png
+/Challenge 4/keras_tuner/
+/Challenge 4/datasets/
+/Challenge 4/datasets/test_set/
+/Challenge 4/datasets/training_set/
